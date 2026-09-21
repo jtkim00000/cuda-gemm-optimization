@@ -1,3 +1,6 @@
+#ifndef NAIVE_MATMUL_CUH
+#define NAIVE_MATMUL_CUH
+
 #include <iostream>
 #include <cuda_runtime.h>
 
@@ -43,17 +46,17 @@ __global__ void naiveMatmulKernel(
     C[row * N + col] = sum;
 }
 
-
 void naiveMatmulGPU(
     const float* A, 
     const float* B, 
     float* C, 
     int M, 
     int N,
-    int K
+    int K,
+    int blockSize
 ) {
     
-    dim3 dimBlock(16, 16, 1);
+    dim3 dimBlock(blockSize, blockSize, 1);
     dim3 dimGrid(
         (N + dimBlock.x - 1) / dimBlock.x, 
         (M + dimBlock.y - 1) / dimBlock.y,
@@ -81,17 +84,4 @@ void naiveMatmulGPU(
 
 }
 
-/*
-    ==================================================
-        TILED MATRIX MULTIPLICATION KERNEL
-    ==================================================
-
-    A is an M x K matrix
-    B is an K x N matrix
-
-    This kernel computes the matrix multiplication A x B = C
-
-    Thus, C is an M x N matrix
-
-    *Put Description Here
-*/
+#endif
