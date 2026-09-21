@@ -1,1 +1,2 @@
-# cuda-gemm-optimization
+# Progressive GEMM Optimization Series in CUDA
+
