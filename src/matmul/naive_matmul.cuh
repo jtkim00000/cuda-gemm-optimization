@@ -75,12 +75,12 @@ void naiveMatmulGPU(
     cudaError_t err = cudaGetLastError();
 
     if(err != cudaSuccess)
-        std::cout << "matmul Kernel Launch Error: " << cudaGetErrorString(err) << '\n';
+        std::cout << "Naive Matmul Kernel Launch Error: " << cudaGetErrorString(err) << '\n';
 
     err = cudaDeviceSynchronize();
 
     if(err != cudaSuccess)
-        std::cout << "matmul Kernel Execution Error: " << cudaGetErrorString(err) << '\n';
+        std::cout << "Naive Matmul Kernel Execution Error: " << cudaGetErrorString(err) << '\n';
 
 }
 
